@@ -15,6 +15,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'online_shop_app',
 ]
 
 MIDDLEWARE = [
@@ -25,8 +27,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'online_shop_app',
 ]
 
 ROOT_URLCONF = 'config.urls'
