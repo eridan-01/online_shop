@@ -10,6 +10,7 @@ python = "^3.12"
 django = "^5.0.4"
 psycopg2-binary = "^2.9.9"
 psycopg2 = "^2.9.9"
+black = "^24.4.2"
 
 
 [build-system]
