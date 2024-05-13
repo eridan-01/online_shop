@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 NULLABLE = {"blank": True, "null": True}
 
@@ -38,6 +39,9 @@ class Product(models.Model):
     )
     updated_at = models.DateTimeField(
         blank=True, verbose_name="Дата последнего изменения (записи в БД)"
+    )
+    manufactured_at = models.DateField(
+        blank=True, default=timezone.now, verbose_name="Дата производства продукта"
     )
 
     def __str__(self):
