@@ -1,0 +1,28 @@
+[
+  {
+    "model": "online_shop_app.product",
+    "pk": 7,
+    "fields": {
+      "name": "БП-131.01",
+      "description": null,
+      "preview": "",
+      "category": 2,
+      "price": 20000,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "online_shop_app.product",
+    "pk": 8,
+    "fields": {
+      "name": "БП-131.02",
+      "description": null,
+      "preview": "",
+      "category": 2,
+      "price": 20000,
+      "created_at": null,
+      "updated_at": null
+    }
+  }
+]

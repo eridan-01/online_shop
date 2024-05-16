@@ -1,0 +1,26 @@
+[
+  {
+    "model": "online_shop_app.category",
+    "pk": 2,
+    "fields": {
+      "name_of_category": "до 150 кв.м",
+      "description": "Проекты домов до 150 кв.м"
+    }
+  },
+  {
+    "model": "online_shop_app.category",
+    "pk": 3,
+    "fields": {
+      "name_of_category": "до 200 кв.м",
+      "description": "Проекты домов до 200 кв.м"
+    }
+  },
+  {
+    "model": "online_shop_app.category",
+    "pk": 4,
+    "fields": {
+      "name_of_category": "до 250 кв.м",
+      "description": "Проекты домов до 250 кв.м"
+    }
+  }
+]
