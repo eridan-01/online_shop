@@ -34,10 +34,10 @@ class Product(models.Model):
     )
     price = models.IntegerField()
     created_at = models.DateTimeField(
-        blank=True, verbose_name="Дата создания (записи в БД)"
+        **NULLABLE, verbose_name="Дата создания (записи в БД)"
     )
     updated_at = models.DateTimeField(
-        blank=True, verbose_name="Дата последнего изменения (записи в БД)"
+        **NULLABLE, verbose_name="Дата последнего изменения (записи в БД)"
     )
 
     def __str__(self):
