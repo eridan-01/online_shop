@@ -1,0 +1,52 @@
+[
+  {
+    "model": "online_shop_app.category",
+    "pk": 2,
+    "fields": {
+      "name_of_category": "до 150 кв.м",
+      "description": "Проекты домов до 150 кв.м"
+    }
+  },
+  {
+    "model": "online_shop_app.category",
+    "pk": 3,
+    "fields": {
+      "name_of_category": "до 200 кв.м",
+      "description": "Проекты домов до 200 кв.м"
+    }
+  },
+  {
+    "model": "online_shop_app.category",
+    "pk": 4,
+    "fields": {
+      "name_of_category": "до 250 кв.м",
+      "description": "Проекты домов до 250 кв.м"
+    }
+  },
+  {
+    "model": "online_shop_app.product",
+    "pk": 7,
+    "fields": {
+      "name": "БП-131.01",
+      "description": null,
+      "preview": "",
+      "category": 2,
+      "price": 20000,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "online_shop_app.product",
+    "pk": 8,
+    "fields": {
+      "name": "БП-131.02",
+      "description": null,
+      "preview": "",
+      "category": 2,
+      "price": 20000,
+      "created_at": null,
+      "updated_at": null
+    }
+  }
+]
