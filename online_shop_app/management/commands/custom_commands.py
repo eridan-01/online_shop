@@ -7,55 +7,43 @@ class Command(BaseCommand):
 
     @staticmethod
     def json_read_categories():
-        with open("category.json", "r") as file:
-            return json.load(file)
+        with open('category.json') as f:
+            categories_data = json.load(f)
+        return categories_data
 
     @staticmethod
     def json_read_products():
-        with open("product.json", "r") as file:
-            return json.load(file)
+        with open('product.json') as f:
+            products_data = json.load(f)
+        return products_data
 
     def handle(self, *args, **options):
-
-        # Удалите все продукты
-        Category.objects.all().delete()
-        # Удалите все категории
+        # Удаляем все продукты и категории
         Product.objects.all().delete()
-        # Создайте списки для хранения объектов
-        product_list = []
-        category_list = []
+        Category.objects.all().delete()
 
-        # Обходим все значения категорий из фиктсуры для получения информации об одном объекте
-        for category in Command.json_read_categories():
-            category_list.append(
-                {
-                    "id": category["pk"],
-                    "name_of_category": category["fields"]["name_of_category"],
-                    "description": category["fields"]["description"],
-                }
-            )
+        # Создаем категории
         category_for_create = []
-        for category_item in category_list:
-            category_for_create.append(Category.objects.create(**category_item))
-
-        # Обходим все значения продуктов из фиктсуры для получения информации об одном объекте
-        for product in Command.json_read_products():
-            product_list.append(
-                {
-                    "id": product["pk"],
-                    "name": product["fields"]["name"],
-                    "description": product["fields"]["description"],
-                    "preview": product["fields"]["preview"],
-                    "category": Category.objects.get(pk=product["fields"]["category"]),
-                    "price": product["fields"]["price"],
-                    "created_at": product["fields"]["created_at"],
-                    "updated_at": product["fields"]["updated_at"],
-                }
+        for category_data in Command.json_read_categories():
+            category_for_create.append(
+                Category(
+                    name_of_category=category_data['fields']['name_of_category'],
+                    description=category_data['fields']['description']
+                )
             )
-        product_for_create = []
-        for product_item in product_list:
-            product_for_create.append(Product.objects.create(**product_item))
-
-        # Создаем объекты в базе с помощью метода bulk_create()
         Category.objects.bulk_create(category_for_create)
+
+        # Создаем продукты
+        product_for_create = []
+        for product_data in Command.json_read_products():
+            product_for_create.append(
+                Product(
+                    name=product_data['fields']['name'],
+                    description=product_data['fields']['description'],
+                    preview=product_data['fields']['preview'],
+                    price=product_data['fields']['price']
+                )
+            )
         Product.objects.bulk_create(product_for_create)
+
+        self.stdout.write(self.style.SUCCESS('Successfully imported categories and products.'))
