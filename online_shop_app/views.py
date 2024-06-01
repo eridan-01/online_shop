@@ -1,8 +1,12 @@
 from django.shortcuts import render
 
+from online_shop_app.models import Product
+
 
 def home(request):
-    return render(request, 'home.html')
+    products = Product.objects.all()
+    context = {'products': products}
+    return render(request, 'products_list.html', context)
 
 
 def contacts(request):
