@@ -14,8 +14,13 @@
                             <div class="btn-group">
                                 <p class="card-text">{{ product.description|truncatechars:100 }}</p>
                             </div>
-                            <a href="{% url 'online_shop_app:product_detail' product.id %}" class="btn btn-sm btn-outline-secondary">Подробнее</a>
                         </div>
+                        <a href="{% url 'online_shop_app:product_detail' product.id %}"
+                           class="btn btn-sm btn-dark mt-2">Подробнее</a>
+                        <a href="{% url 'online_shop_app:product_update' product.id %}"
+                           class="btn btn-sm btn-dark mt-2">Редактировать</a>
+                        <a href="{% url 'online_shop_app:product_delete' product.id %}"
+                           class="btn btn-sm btn-danger mt-2">Удалить</a>
                     </div>
                 </div>
             </div>
