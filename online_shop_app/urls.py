@@ -8,7 +8,6 @@ app_name = OnlineShopAppConfig.name
 urlpatterns = [
     path('', ProductListView.as_view(), name='product_list'),
     path('online_shop_app/contacts/', ContactView.as_view(), name="contacts"),
-    # path('contacts/', contacts, name='contacts'),
     path('online_shop_app/<int:pk>', ProductDetailView.as_view(), name='product_detail'),
     path('online_shop_app/create/', ProductCreateView.as_view(), name='product_create'),
     path('online_shop_app/<int:pk>/update/', ProductUpdateView.as_view(), name='product_update'),
