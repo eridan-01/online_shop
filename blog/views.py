@@ -1,3 +1,27 @@
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-# Create your views here.
+from blog.models import BlogArticle
+
+
+class BlogArticleListView(ListView):
+    model = BlogArticle
+
+
+class BlogArticleDetailView(DetailView):
+    model = BlogArticle
+
+
+class BlogArticleCreateView(CreateView):
+    model = BlogArticle
+    fields = ('title', 'text', 'preview')
+
+
+
+class BlogArticleUpdateView(UpdateView):
+    model = BlogArticle
+
+
+class BlogArticleDeleteView(DeleteView):
+    model = BlogArticle
+
+
