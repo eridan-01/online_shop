@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'online_shop_app',
+    'blog'
 ]
 
 MIDDLEWARE = [
@@ -93,4 +95,4 @@ STATICFILES_DIRS = [BASE_DIR / 'static',]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

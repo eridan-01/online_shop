@@ -46,4 +46,4 @@ class Command(BaseCommand):
             )
         Product.objects.bulk_create(product_for_create)
 
-        self.stdout.write(self.style.SUCCESS('Successfully imported categories and products.'))
+        self.stdout.write(self.style.SUCCESS('Successfully imported categories and online_shop_app.'))
