@@ -7,6 +7,11 @@ from blog.models import BlogArticle
 class BlogArticleListView(ListView):
     model = BlogArticle
 
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        queryset = queryset.filter(is_published=True)
+        return queryset
+
 
 class BlogArticleDetailView(DetailView):
     model = BlogArticle
