@@ -14,15 +14,18 @@ class BlogArticleDetailView(DetailView):
 
 class BlogArticleCreateView(CreateView):
     model = BlogArticle
-    fields = ('title', 'body')
+    fields = ('title', 'slug', 'body', 'preview')
     success_url = reverse_lazy('blog:blog_list')
 
 
 class BlogArticleUpdateView(UpdateView):
     model = BlogArticle
+    fields = ('title', 'slug', 'body', 'preview')
+    success_url = reverse_lazy('blog:blog_list')
 
 
 class BlogArticleDeleteView(DeleteView):
     model = BlogArticle
+    success_url = reverse_lazy('blog:blog_list')
 
 
