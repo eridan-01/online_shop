@@ -10,6 +10,13 @@
                     <img class="card-img-top" src="{{ product.preview | media_filter }}">
                     <div class="card-body">
                         <p class="card-text">{{ product.name }}</p>
+                        <p class="card-text">
+                            {% if product.active_version != 'Нет активной версии' %}
+                            Активная версия: {{ product.active_version }} (v{{ product.number_version }})
+                            {% else %}
+                            Нет активной версии
+                            {% endif %}
+                        </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <p class="card-text">{{ product.description|truncatechars:100 }}</p>
@@ -21,6 +28,12 @@
                            class="btn btn-sm btn-dark mt-2">Редактировать</a>
                         <a href="{% url 'online_shop_app:product_delete' product.id %}"
                            class="btn btn-sm btn-danger mt-2">Удалить</a>
+                        <a href="{% url 'online_shop_app:version_add' product.id %}"
+                           class="btn btn-sm btn-success mt-2">Добавить версию</a>
+                        {% if product.versions.count > 0 %}
+                        <a href="{% url 'online_shop_app:version_update' product.versions.last.id %}"
+                           class="btn btn-sm btn-primary mt-2">Редактировать последнюю версию</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
