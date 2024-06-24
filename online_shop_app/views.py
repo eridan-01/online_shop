@@ -5,13 +5,31 @@ from django.views.generic import DetailView, ListView, CreateView, UpdateView, D
 from django.views.generic.base import TemplateView
 
 from online_shop_app.froms import ProductForm
-from online_shop_app.models import Contact
+from online_shop_app.models import Contact, Version
 
 from online_shop_app.models import Product
 
 
 class ProductListView(ListView):
     model = Product
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+        list_product = Product.objects.all().prefetch_related('versions')
+
+        for product in list_product:
+            active_version = product.versions.filter(is_active=True).last()
+            if active_version:
+                product.active_version = active_version.name_version
+                product.number_version = active_version.number_version
+            else:
+                product.active_version = 'Нет активной версии'
+
+        context_data['object_list'] = list_product
+        return context_data
+
+        context_data['object_list'] = list_product
+        return context_data
 
 
 class ProductDetailView(DetailView):
