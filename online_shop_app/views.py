@@ -4,7 +4,7 @@ from django.views.generic import DetailView, ListView, CreateView, UpdateView, D
 
 from django.views.generic.base import TemplateView
 
-from online_shop_app.froms import ProductForm
+from online_shop_app.froms import ProductForm, VersionForm
 from online_shop_app.models import Contact, Version
 
 from online_shop_app.models import Product
@@ -24,9 +24,6 @@ class ProductListView(ListView):
                 product.number_version = active_version.number_version
             else:
                 product.active_version = 'Нет активной версии'
-
-        context_data['object_list'] = list_product
-        return context_data
 
         context_data['object_list'] = list_product
         return context_data
@@ -62,3 +59,15 @@ class ContactView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["latest_contacts"] = Contact.objects.all()[:5]
         return context
+
+
+class VersionCreateView(CreateView):
+    model = Version
+    form_class = VersionForm
+    success_url = reverse_lazy('online_shop_app:product_list')
+
+
+class VersionUpdateView(UpdateView):
+    model = Version
+    form_class = VersionForm
+    success_url = reverse_lazy('online_shop_app:product_list')
