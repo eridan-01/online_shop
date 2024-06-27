@@ -8,13 +8,15 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 psycopg2-binary = "^2.9.9"
-django = "^5.0.6"
+django = "4.2.2"
 pillow = "^10.3.0"
 black = "^24.4.2"
 ipython = "^8.24.0"
 pytils = "^0.4.1"
 django-crispy-forms = "^2.2"
 crispy-bootstrap5 = "^2024.2"
+django-phonenumber-field = {extras = ["phonenumbers"], version = "^8.0.0"}
+certifi = "^2024.6.2"
 
 
 [build-system]

@@ -1,5 +1,9 @@
 import os
 from pathlib import Path
+import certifi
+from django.contrib import messages
+
+os.environ['SSL_CERT_FILE'] = certifi.where()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,6 +25,8 @@ INSTALLED_APPS = [
     'blog',
     'crispy_forms',
     'crispy_bootstrap5',
+    'users',
+    'phonenumber_field'
 ]
 
 MIDDLEWARE = [
@@ -101,3 +107,27 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+AUTH_USER_MODEL = 'users.User'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "geym.eugene@yandex.ru"
+EMAIL_HOST_PASSWORD = "jabffmsoxxpshvzk"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}
