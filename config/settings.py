@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import certifi
+from django.contrib import messages
 
 os.environ['SSL_CERT_FILE'] = certifi.where()
 
@@ -121,3 +122,12 @@ EMAIL_USE_SSL = True
 
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}
