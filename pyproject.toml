@@ -16,6 +16,7 @@ pytils = "^0.4.1"
 django-crispy-forms = "^2.2"
 crispy-bootstrap5 = "^2024.2"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "^8.0.0"}
+certifi = "^2024.6.2"
 
 
 [build-system]
