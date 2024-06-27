@@ -193,9 +193,11 @@
                         планами этажей и фото
                     </p>
                 </ul>
+                {% if user.is_authenticated %}
                 <div class="d-grid gap-2 col-12 mx-auto">
                     <a class="btn btn-lg btn-dark" href="{% url 'online_shop_app:product_create' %}" role="button">Добавить проект</a>
                 </div>
+                {% endif %}
             </div>
             <div class="col-7">
                 <div id="carouselExampleIndicators" class="carousel slide">
