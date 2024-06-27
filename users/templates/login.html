@@ -3,15 +3,29 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
             <form class="row" method="post" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-body">
                         {% csrf_token %}
                         {{ form.as_p }}
                     </div>
-                    <button type="submit" class="btn btn-dark mb-2">
-                        Войти
-                    </button>
+                    <div class="mb-2">
+                        <button type="submit" class="btn btn-dark">
+                            Войти
+                        </button>
+                    </div>
+                    <div>
+                        <a href="{% url 'users:password_reset' %}" class="btn btn-link">
+                            Забыли пароль?
+                        </a>
+                    </div>
                 </div>
             </form>
         </div>
