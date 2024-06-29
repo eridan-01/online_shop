@@ -45,14 +45,14 @@ class ProductCreateView(CreateView, LoginRequiredMixin):
         return super().form_valid(form)
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(UpdateView, LoginRequiredMixin):
     model = Product
     # fields = ('name', 'description', 'preview', 'category', 'price')
     form_class = ProductForm
     success_url = reverse_lazy('online_shop_app:product_list')
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(DeleteView, LoginRequiredMixin):
     model = Product
     success_url = reverse_lazy('online_shop_app:product_list')
 
@@ -66,13 +66,13 @@ class ContactView(TemplateView):
         return context
 
 
-class VersionCreateView(CreateView):
+class VersionCreateView(CreateView, LoginRequiredMixin):
     model = Version
     form_class = VersionForm
     success_url = reverse_lazy('online_shop_app:product_list')
 
 
-class VersionUpdateView(UpdateView):
+class VersionUpdateView(UpdateView, LoginRequiredMixin):
     model = Version
     form_class = VersionForm
     success_url = reverse_lazy('online_shop_app:product_list')
