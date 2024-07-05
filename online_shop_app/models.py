@@ -48,6 +48,10 @@ class Product(models.Model):
         **NULLABLE,
         on_delete=models.SET_NULL
     )
+    is_published = models.BooleanField(
+        default=False,
+        verbose_name="Опубликовано",
+    )
 
     def __str__(self):
         return f"{self.name}"
@@ -55,6 +59,11 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Проект"
         verbose_name_plural = "Проекты"
+        permissions = [
+            ('can_change_is_published', 'Can change sign of publication'),
+            ('can_edit_description', 'Can edit description'),
+            ('can_edit_category', 'Can edit category')
+        ]
 
 
 class Contact(models.Model):

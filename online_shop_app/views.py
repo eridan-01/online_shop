@@ -1,11 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from django.views.generic.base import TemplateView
 
-from online_shop_app.froms import ProductForm, VersionForm
+from online_shop_app.froms import ProductForm, VersionForm, ProductModeratorForm
 from online_shop_app.models import Contact, Version
 
 from online_shop_app.models import Product
@@ -50,6 +50,20 @@ class ProductUpdateView(UpdateView, LoginRequiredMixin):
     # fields = ('name', 'description', 'preview', 'category', 'price')
     form_class = ProductForm
     success_url = reverse_lazy('online_shop_app:product_list')
+
+    def get_form_class(self):
+        user = self.request.user
+        if user == self.object.owner:
+            return ProductForm
+        if user.has_perm(
+                "online_shop_app.can_change_is_published"
+        ) and user.has_perm(
+            "online_shop_app.can_edit_description"
+        ) and user.has_perm(
+            "online_shop_app.can_edit_category"
+        ):
+            return ProductModeratorForm
+        raise PermissionDenied
 
 
 class ProductDeleteView(DeleteView, LoginRequiredMixin):
