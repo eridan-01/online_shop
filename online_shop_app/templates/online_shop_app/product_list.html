@@ -25,8 +25,10 @@
                         <a href="{% url 'online_shop_app:product_detail' product.id %}"
                            class="btn btn-sm btn-dark mt-2">Подробнее</a>
                         {% if user.is_authenticated %}
+                            {% if perms.online_shop_app.can_change_is_published and perms.online_shop_app.can_edit_description and perms.online_shop_app.can_edit_category or user == online_shop_app.owner %}
                             <a href="{% url 'online_shop_app:product_update' product.id %}"
                                 class="btn btn-sm btn-dark mt-2">Редактировать</a>
+                            {% endif %}
                             <a href="{% url 'online_shop_app:product_delete' product.id %}"
                                 class="btn btn-sm btn-danger mt-2">Удалить</a>
                             <a href="{% url 'online_shop_app:version_add' product.id %}"
