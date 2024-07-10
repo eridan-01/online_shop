@@ -6,9 +6,10 @@ from django.views.generic import DetailView, ListView, CreateView, UpdateView, D
 from django.views.generic.base import TemplateView
 
 from online_shop_app.froms import ProductForm, VersionForm, ProductModeratorForm
-from online_shop_app.models import Contact, Version
+from online_shop_app.models import Contact, Version, Category
 
 from online_shop_app.models import Product
+from online_shop_app.services import get_categories_from_cache, get_products_from_cache
 
 
 class ProductListView(ListView):
@@ -28,6 +29,9 @@ class ProductListView(ListView):
 
         context_data['object_list'] = list_product
         return context_data
+
+    def get_queryset(self):
+        return get_products_from_cache()
 
 
 class ProductDetailView(DetailView):
@@ -69,6 +73,13 @@ class ProductUpdateView(UpdateView, LoginRequiredMixin):
 class ProductDeleteView(DeleteView, LoginRequiredMixin):
     model = Product
     success_url = reverse_lazy('online_shop_app:product_list')
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    model = Category
+
+    def get_queryset(self):
+        return get_categories_from_cache()
 
 
 class ContactView(TemplateView):
